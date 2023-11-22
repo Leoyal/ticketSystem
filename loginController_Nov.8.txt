@@ -1,0 +1,93 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+use App\Models\User;
+use App\Http\Controllers\Controller;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+use App\Rules\ValidateUsernameExists;
+
+class LoginController extends Controller
+{
+    /*
+    |--------------------------------------------------------------------------
+    | Login Controller
+    |--------------------------------------------------------------------------
+    |
+    | This controller handles authenticating users for the application and
+    | redirecting them to your home screen. The controller uses a trait
+    | to conveniently provide its functionality to your applications.
+    |
+    */
+
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    protected $redirectTo = 'home';
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+   /* 
+    public function validateUsername(Request $request)
+    {
+        $request->validate([
+            'uname' => ['required', new ValidateUsernameExists],
+        ]);
+
+        // Continue with your logic if validation passes
+    }*/
+   
+   /* public function authenticate(Request $request)
+    {
+        // Validate the request data, if needed
+        $request->validate([
+            'uname' => 'required',
+            'password' => 'required',
+        ]);
+
+        // Get the username from the request
+        $uname = $request->input('uname');
+        $password = $request->input('password');
+
+        if (Auth::attempt(['uname' => $uname, 'password' => $password])) {
+            // Authentication passed
+            return redirect()->route('home');
+        } else {
+            // Authentication failed, you might want to redirect back with an error message
+            return redirect()->back()->withInput(['uname' => $uname])->withErrors(['message' => 'Invalid credentials']);
+        }
+    }*/
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('uname', 'password');
+        
+        if (Auth::attempt($credentials)) {
+            // Authentication passed
+            return view('home');
+
+        } else {
+            // Authentication failed
+            return redirect()->back()->withErrors(['message' => 'Invalid username or password']);
+        }
+    }
+
+    public function index()
+{
+    return view('home');
+}
+
+}
