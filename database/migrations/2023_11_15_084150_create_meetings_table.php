@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('p_num');
             $table->string('focal_p');
             $table->string('center');
+            $table->string('link');
         });
     }
 

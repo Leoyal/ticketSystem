@@ -50,6 +50,7 @@ class VirtualController extends Controller
         $virtual->p_num = $request->input('p_num');
         $virtual->focal_p = $request->input('focal_p');
         $virtual->center = $request->input('center');
+        $virtual->center = $request->input('link');
 
         // Repeat for other fields
         $virtual->save();
@@ -72,16 +73,16 @@ class VirtualController extends Controller
 
     public function deleteUser($id)
     {
-    $user = Virtual::find($id);
+        $user = Virtual::find($id);
 
-    if (!$user) {
-        // Handle case where the user is not found
-        return redirect()->route('show-virtual-data')->with('error', 'User not found');
-    }
+        if (!$user) {
+            // Handle case where the user is not found
+            return redirect()->route('show-virtual-data')->with('error', 'User not found');
+        }
 
-    $user->delete();
+        $user->delete();
 
-    return redirect()->route('show-virtual-data')->with('success', 'User deleted successfully');
+        return redirect()->route('show-virtual-data')->with('success', 'User deleted successfully');
     }
 
     public function addEvent()
@@ -100,10 +101,43 @@ class VirtualController extends Controller
         $virtual->p_num = $request->input('p_num');
         $virtual->focal_p = $request->input('focal_p');
         $virtual->center = $request->input('center');
+        $virtual->center = $request->input('link');
 
         // Repeat for other fields
         $virtual->save();
 
     return redirect()->route('show-virtual-data')->with('success', 'User added successfully');
     }
+
+    public function editVirtual($id)
+{
+    $user = Virtual::find($id); // Retrieve the user by ID
+
+    // You can add validation or error handling logic here
+
+    return view('edit-virtual', compact('user')); // Display the edit view with the user data
+}
+public function updateVirtual(Request $request, $id)
+{
+    $user = Virtual::find($id); // Retrieve the user by ID
+
+    $this->validate($request, [
+        'v_event',
+        'e_start',
+        't_start',
+        'e_end',
+        't_end',
+        'p_num',
+        'focal_p',
+        'center',
+        'link'
+
+        // Add other validation rules for your fields
+    ]);
+
+    $user->update($request->all());
+
+    return redirect()->route('show-virtual-data')->with('success', 'User updated successfully');
+   
+}
 }

@@ -19,7 +19,7 @@
                             <label for="v_event" class="col-md-4 col-form-label text-md-end">{{ __('Title of the Virtual Event') }}</label>
 
                             <div class="col-md-6">
-                                <input id="v_event" type="text" class="form-control @error('minitial') is-invalid @enderror " name="v_event" value="{{old('v_event')}}" required>
+                                <input id="v_event" type="text" class="form-control @error('v_event') is-invalid @enderror " name="v_event" value="{{old('v_event')}}" required>
 
                                 @error('v_event')
                                     <span class="invalid-feedback" role="alert">
@@ -125,7 +125,7 @@
                                 </select>                              
                             </div>
                         </div>
-                                                                      
+                                                 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

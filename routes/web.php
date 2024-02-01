@@ -22,7 +22,7 @@ use App\Http\Controllers\VirtualController;
 Auth::routes();
  
 // In routes/web.php
-Route::get('/register', [App\Http\Controllers\Auth\RegisterController::class,'showRegistrationForm'])->name('register');
+Route::get('/register', [RegisterController::class,'showRegistrationForm'])->name('register');
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 //Route::resource('logins',LoginController::class);
@@ -46,3 +46,6 @@ Route::get('/show-virtual-data', [VirtualController::class, 'showVirtualData'])-
 Route::delete('/delete-user/{id}', [VirtualController::class, 'deleteUser'])->name('delete-user');
 Route::get('/add-event', [VirtualController::class, 'addEvent'])->name('add-event');
 Route::any('/add-new-event', [VirtualController::class, 'addNewEvent'])->name('add-new-event');
+Route::get('/edit-virtual/{id}', [VirtualController::class, 'editVirtual'])->name('edit-virtual');
+Route::get('/delete-user/{id}', [VirtualController::class, 'deleteVirtual'])->name('delete-virtual');
+Route::patch('/update-virtual/{id}', [VirtualController::class, 'updateVirtual'])->name('update-virtual');

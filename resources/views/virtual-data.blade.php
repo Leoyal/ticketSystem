@@ -32,7 +32,10 @@
             <th>Expected No. of Participants</th>
             <th>Name of Focal Person</th>
             <th>Center</th>
+            <th>Link</th>
             <th>Actions</th>
+        
+
 
         </tr>
     </thead>
@@ -47,11 +50,12 @@
                 <td class="center-text">{{ $user->p_num }}</td>
                 <td class="center-text">{{ $user->focal_p }}</td>
                 <td class="center-text">{{ $user->center }}</td>
+                <td class="center-text">{{ $user->link }}</td>
 
                 
                 <td>
                 <div class="row">
-                    <a href="{{ route('edit-user', $user->id) }}" class="btn btn-primary ">
+                    <a href="{{ route('edit-virtual', $user->id) }}" class="btn btn-primary ">
                     <i class="nav-icon fas fa-edit">
                     </i>
                     </a>
@@ -75,7 +79,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                <form action="{{ route('delete-user', $user->id) }}" method="post">
+                                <form action="{{ route('delete-virtual', $user->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit" class="btn btn-danger">Delete</button>

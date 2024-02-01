@@ -165,12 +165,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="{{ route('register') }}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Register</p>
                 </a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a href="show-registered-data" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>

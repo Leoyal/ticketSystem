@@ -25,6 +25,7 @@ class Virtual extends Model
         'p_num',
         'focal_p',
         'center',
+        'link'
     ];
     
     protected $hidden = [

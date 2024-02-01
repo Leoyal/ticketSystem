@@ -16,7 +16,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/show-registered-data';
+    protected $redirectTo = '/show-virtual-data';
 
     /**
      * Create a new controller instance.
@@ -55,7 +55,7 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
           //  return $this->sendLoginResponse($request);
-            return redirect('/show-registered-data')->with('status', 'login-success');
+            return redirect('/show-virtual-data')->with('status', 'login-success');
         }
 
         return $this->sendFailedLoginResponse($request);
